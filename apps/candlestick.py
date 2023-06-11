@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
 from .helpers.retrieve_candlestick import retrieve_candlestick_data
-from .helpers.retrieve_pie_chart import retrieve_pie_chart_data
 import plotly.graph_objs as go
 import datetime
 candlestick = Blueprint('candlestick', __name__)
