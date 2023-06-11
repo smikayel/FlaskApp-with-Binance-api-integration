@@ -1,31 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flask UI</title>
-    <link rel="stylesheet" href="https://cdn.plot.ly/plotly-latest.min.css">
+    <title>Candlestick Chart and Pie Chart</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <div>
-        <div id="candlestick-chart"></div>
+        <h1>Candlestick Chart</h1>
+        <div id="candlestick-chart">{{ candlestick_div|safe }}</div>
     </div>
     <div>
-        <div id="pie-chart"></div>
+        <h1>Pie Chart - Market Caps</h1>
+        <div id="pie-chart">{{ pie_div|safe }}</div>
     </div>
-
-    <script>
-        var candlestickData = {{ candlestick_data|safe }};
-        var pieChartData = {{ pie_chart_data|safe }};
-
-        // Create the candlestick chart
-        var candlestickLayout = {
-        };
-        Plotly.newPlot('candlestick-chart', candlestickData, candlestickLayout);
-
-        var pieChartLayout = {
-
-        };
-        Plotly.newPlot('pie-chart', pieChartData, pieChartLayout);
-    </script>
 </body>
 </html>
