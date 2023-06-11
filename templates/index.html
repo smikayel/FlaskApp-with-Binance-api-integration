@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask UI</title>
+    <!-- Include the necessary CSS and JavaScript libraries -->
+    <link rel="stylesheet" href="https://cdn.plot.ly/plotly-latest.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div>
+        <!-- Add a div for displaying the candlestick chart -->
+        <div id="candlestick-chart"></div>
+    </div>
+    <div>
+        <!-- Add a div for displaying the pie chart -->
+        <div id="pie-chart"></div>
+    </div>
+
+    <script>
+        // Retrieve the candlestick data and pie chart data passed from Flask
+        var candlestickData = {{ candlestick_data|safe }};
+        var pieChartData = {{ pie_chart_data|safe }};
+
+        // Create the candlestick chart
+        var candlestickLayout = {
+            // Specify the layout settings for the candlestick chart
+            // You can customize the layout as per your requirements
+        };
+        Plotly.newPlot('candlestick-chart', candlestickData, candlestickLayout);
+
+        // Create the pie chart
+        var pieChartLayout = {
+            // Specify the layout settings for the pie chart
+            // You can customize the layout as per your requirements
+        };
+        Plotly.newPlot('pie-chart', pieChartData, pieChartLayout);
+    </script>
+</body>
+</html>
