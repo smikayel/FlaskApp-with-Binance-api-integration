@@ -1,20 +1,21 @@
+from ..models.tickerDataModel import TickerData, db
 
 def retrieve_pie_chart_data():
-    def retrieve_candlestick_data():
-        # Retrieve the candlestick data from the database
-        candlestick_data = TickerData.query.all()
+    # Retrieve the market cap data from the database
+    symbols = TickerData.query.with_entities(TickerData.symbol).distinct().limit(10).all()
 
-        # Convert the candlestick data to the desired format for Plotly
-        candlestick_chart_data = []
-        for data in candlestick_data:
-            candlestick = {
-                "x": [data.open_time, data.close_time],
-                "open": data.open,
-                "high": data.high,
-                "low": data.low,
-                "close": data.close,
-                # Add more properties as per your Plotly candlestick chart requirements
-            }
-            candlestick_chart_data.append(candlestick)
+    # Calculate the market cap for each symbol
+    market_caps = {}
+    for symbol in symbols:
+        total_market_cap = TickerData.query.with_entities(db.func.sum(TickerData.quote_asset_volume)).filter_by(symbol=symbol).scalar()
+        market_caps[symbol] = total_market_cap
 
-        return []
+    pie_chart_data = []
+    for symbol, market_cap in market_caps.items():
+        data_point = {
+            "label": symbol,
+            "value": market_cap,
+        }
+        pie_chart_data.append(data_point)
+
+    return pie_chart_data
