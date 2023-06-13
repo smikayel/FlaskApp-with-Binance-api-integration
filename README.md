@@ -71,7 +71,7 @@ The candlestick chart displays the open, high, low, and close prices for a selec
 ### Market Cap Pie Chart
 
 The pie chart represents the market capitalization of the top 10 symbols. It provides a visual breakdown of the relative market size of each symbol.
-
+  
 ## Contributing
 
 If you'd like to contribute to this project, please follow these steps:
